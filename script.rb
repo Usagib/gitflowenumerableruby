@@ -3,6 +3,7 @@
 # enumerable ruby module
 module Enumerable
   def my_each
+    return self.to_enum unless block_given?
     i = 0
     length.times do
       yield(self[i])
@@ -11,6 +12,7 @@ module Enumerable
   end
 
   def my_each_with_index
+    return self.to_enum unless block_given?
     i = 0
     length.times do
       yield(self[i], i)
@@ -19,6 +21,7 @@ module Enumerable
   end
 
   def my_select
+    return self.to_enum unless block_given?
     i = 0
     res_arr = []
     length.times do
@@ -28,10 +31,23 @@ module Enumerable
     res_arr
   end
 
-  def my_all?
+  def my_all?(arg = nil)
+    
     i = 0
     length.times do
-      return false if yield(self[i]) == false
+      if arg == nil && block_given? == false
+        return false if self[i] == false
+      else
+        if block_given?
+          (return false if yield(self[i]) == false) if arg == nil
+          (return false unless yield(self[i]) is_a? arg) if arg != nil
+        else
+
+        end
+        if block_given? && arg != nil
+          return false if yield(self[i]) == false
+        end
+    end
 
       i += 1
     end
@@ -82,10 +98,11 @@ testb = [2, 4, 6, 8, 10]
 testc = [2, 3, 4, 8, 1, 3]
 testd = [2, 4, 5]
 my_proc = proc { |i| i * 2 }
-print testa.my_map(&my_proc)
 a = testb.my_map { |i| i * 2 }
 b = testc.my_each { |i| i * 2 }
-c = testd.my_each { |i| (i * 2) }
-print a
-print b
+c = testd.my_each
+d = testd.my_each_with_index
+e = testd.each_with_index
 print c
+print d
+print e
