@@ -32,7 +32,6 @@ module Enumerable
   end
 
   def my_all?(arg = nil)
-    
     i = 0
     length.times do
       if arg == nil && block_given? == false
