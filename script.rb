@@ -36,7 +36,7 @@ module Enumerable
   def my_all?(arg = nil)
     if block_given?
       my_each { |i| return false unless yield(i) }
-    elsif arg.class == Class {}
+    elsif arg.class == Class
       my_each { |i| return false unless i.class == arg }
     elsif arg.class == Regexp
       my_each { |i| return false unless i =~ arg }
@@ -63,7 +63,7 @@ module Enumerable
     false
   end
 
-  def my_none?
+  def my_none?(arg = nil)
     if block_given?
       my_each { |i| return false if yield(i) }
     elsif arg.class == Class
@@ -121,7 +121,7 @@ module Enumerable
                  yield(memory, i)
                end
     end
-    memo
+    memory
   end
 end
 
