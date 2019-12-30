@@ -31,7 +31,6 @@ module Enumerable
   end
 
   def my_all?(arg = nil)
-<<<<<<< HEAD
     if block_given?
       my_each { |i| return false unless yield(i) }
     elsif arg.class == Class
@@ -42,22 +41,6 @@ module Enumerable
       my_each { |i| return false unless i }
     else
       my_each { |i| return false unless i == arg }
-=======
-    i = 0
-    length.times do
-      if arg == nil && block_given? == false
-        return false if self[i] == false
-      else
-        if block_given?
-          (return false if yield(self[i]) == false) if arg == nil
-          (return false unless yield(self[i]) is_a? arg) if arg != nil
-        else
-
-        end
-        if block_given? && arg != nil
-          return false if yield(self[i]) == false
-        end
->>>>>>> feature
     end
     true
   end
