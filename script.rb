@@ -3,7 +3,8 @@
 # enumerable ruby module
 module Enumerable
   def my_each
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
+
     i = 0
     length.times do
       yield(self[i])
@@ -13,7 +14,8 @@ module Enumerable
   end
 
   def my_each_with_index
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
+
     i = 0
     length.times do
       yield(self[i], i)
@@ -22,7 +24,8 @@ module Enumerable
   end
 
   def my_select
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
+
     res_arr = []
     my_each do |x|
       res_arr << x if yield x
@@ -33,9 +36,9 @@ module Enumerable
   def my_all?(arg = nil)
     if block_given?
       my_each { |i| return false unless yield(i) }
-    elsif arg.class == Class
+    elsif arg.class == Class {}
       my_each { |i| return false unless i.class == arg }
-    elsif arg.class == Regex
+    elsif arg.class == Regexp
       my_each { |i| return false unless i =~ arg }
     elsif arg.nil?
       my_each { |i| return false unless i }
@@ -50,7 +53,7 @@ module Enumerable
       my_each { |i| return true if yield(i) }
     elsif arg.class == Class
       my_each { |i| return true if i.class == arg }
-    elsif arg.class == Regex
+    elsif arg.class == Regexp
       my_each { |i| return true if i =~ arg }
     elsif arg.nil?
       my_each { |i| return true if i }
@@ -65,7 +68,7 @@ module Enumerable
       my_each { |i| return false if yield(i) }
     elsif arg.class == Class
       my_each { |i| return false if i.class == arg }
-    elsif arg.class == Regex
+    elsif arg.class == Regexp
       my_each { |i| return false if i =~ arg }
     elsif arg.nil?
       my_each { |i| return false if i }
@@ -88,7 +91,8 @@ module Enumerable
   end
 
   def my_map(proc = nil)
-    return self.to_enum unless block_given?
+    return to_enum unless block_given?
+
     this = self
     res_arr = []
     this.my_each do |i|
@@ -110,33 +114,17 @@ module Enumerable
       memory = args[0]
       sym = args[1]
     end
-
     array[0..-1].my_each do |i|
       memory = if sym
-               memory.send(sym, i)
-              else
-               yield(memory, i)
-             end
+                 memory.send(sym, i)
+               else
+                 yield(memory, i)
+               end
     end
     memo
   end
-
 end
 
 def multiply_els(arr)
   arr.my_inject :*
 end
-
-testa = [3, 6, 4, 1, 9, 7, 8, 2, 3]
-testb = [2, 4, 6, 8, 10]
-testc = [2, 3, 4, 8, 1, 3]
-testd = [2, 4, 5]
-my_proc = proc { |i| i * 2 }
-a = testb.my_map { |i| i * 2 }
-b = testc.my_each { |i| i * 2 }
-c = testd.my_each
-d = testd.my_each_with_index
-e = testd.each_with_index
-print c
-print d
-print e
