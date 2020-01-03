@@ -1,6 +1,8 @@
 # Ruby Enumerable methods
 A comprehensive rebuild on basic Enumerable methods in Ruby for a better understanding in block passing, enumerator and classes and regular expressions as arguments.
 
+## Update: Added Rspec testing for all methods, check ./spec/enumerable_spec.rb for details.
+
 ### This scripts rebuilds ruby Enumerable methods:
 
 - #each as #my_each
