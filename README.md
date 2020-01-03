@@ -3,6 +3,8 @@ A comprehensive rebuild on basic Enumerable methods in Ruby for a better underst
 
 ## Update: Added Rspec testing for all methods, check ./spec/enumerable_spec.rb for details.
 
+### Testing project specification can be found at You can find the original project specification at: https://www.theodinproject.com/courses/ruby-programming/lessons/testing-your-ruby-code
+
 ### This scripts rebuilds ruby Enumerable methods:
 
 - #each as #my_each
