@@ -2,11 +2,11 @@
 require './lib/enumerable'
 
 RSpec.describe Enumerable do
-  test = [2,3,4,5,6,7]
-  testeven = [2,4,6,8,10]
-  testodd = [1,3,5,7,9]
-  hash = {"one" => 1, "two" => 2, "three" => 3}
-  testclass = Class.new
+  let(:test){[2,3,4,5,6,7]}
+  let(:testeven){[2,4,6,8,10]}
+  let(:testodd){[1,3,5,7,9]}
+  let(:hash){{"one" => 1, "two" => 2, "three" => 3}}
+  let(:testclass){Class.new}
 
   describe "#my_each" do
     context "with no block passed" do
@@ -129,24 +129,24 @@ RSpec.describe Enumerable do
 
   end
 
-  describe "#my_none" do
+  describe "#my_none?" do
     context "With no block passed" do
-      it "return true" do
-        expect(test.my_any?).to eql(true)
+      it "returns false" do
+        expect(test.my_none?).to eql(false)
       end
     end
 
     context "with block passed" do
-      it "return true if any of the items is even" do
-        expect(test.my_any?{|num| num.even?}).to eql(true)
+      it "return false if none of the items is even" do
+        expect(test.my_none?{|num| num.even?}).to eql(false)
       end
 
-      it "return false if none of the items is even" do
-        expect(testodd.my_any?{|num| num.even?}).to eql(false)
+      it "return true if none of the items is even" do
+        expect(testodd.my_none?{|num| num.even?}).to eql(true)
       end
 
       it "return true if at least one item is odd" do
-        expect(test.my_any?{|num| num.odd?}).to_not eql(false)
+        expect(test.my_none?{|num| num.odd?}).to_not eql(true)
       end
     end
 
