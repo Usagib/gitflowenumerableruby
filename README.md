@@ -16,7 +16,7 @@ A comprehensive rebuild on basic Enumerable methods in Ruby for a better underst
 
 each of them can be used as default Enumerable methods working the exact same way
 
-##Rspec testing for all methods, check (./spec/enumerable_spec.rb) .
+## Rspec testing for all methods, check (./spec/enumerable_spec.rb) .
 ### Rspec test cases:
  1. #my_each with no block passed returns an enumerator
  2. #my_each with block passed do a loop routine
@@ -60,5 +60,7 @@ each of them can be used as default Enumerable methods working the exact same wa
 
 ### Testing project specification can be found at : https://www.theodinproject.com/courses/ruby-programming/lessons/testing-your-ruby-code
 
-## Coded by Eduardo 'Usagi' Bonilla:
+Coded by Eduardo 'Usagi' Bonilla:
 [GitHub](https://www.github.com/UsagiB)
+Testing by Ko Nyan:
+[GitHub](https://github.com/konyan)
